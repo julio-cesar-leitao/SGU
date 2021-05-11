@@ -44,6 +44,7 @@ Projeto de IoT
 -  a - Método
   
 -  b - Parâmetros
+
   
 2 - Modelos Matemáticos
 
@@ -55,6 +56,8 @@ Projeto de IoT
 1 - Dados úteis
 - a - Originais
 - b - Derivados
+
+
 2 - Métodos e Algoritmos de Análise
 - a - O quê?
 - b - Para quê?
