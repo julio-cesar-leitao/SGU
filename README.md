@@ -12,40 +12,40 @@ IMPLEMENTAÇÃO - HARDWARE
   
 2 - Componentes
 
-  a - Descrição dos componentes
+-  a - Descrição dos componentes
   
-  b - Justificativa
+-  b - Justificativa
   
 IMPLEMENTAÇÃO - SOFTWARE
 
 1 - Identificação 
 
-  a - Algoritmo
+-  a - Algoritmo
   
-  b - Critérios de amostragem
+-  b - Critérios de amostragem
   
-  c - Modelos
+-  c - Modelos
   
 2 - Controle de Processos
 
-  a - Chamada do processo (rules.d ou init.d)
+-  a - Chamada do processo (rules.d ou init.d)
   
 3 - Interface gráfica (dashboards)
 
-  a - Bibliotecas e forma de uso
+-  a - Bibliotecas e forma de uso
   
-  b - Design
+-  b - Design
 
 PESQUISA
 
 1 - Teste de Fila
 
-  a - Método
+-  a - Método
   
-  b - Parâmetros
+-  b - Parâmetros
   
 2 - Modelos Matemáticos
 
-  a - Modelo Estocástico de Fila (Gabriel)
+-  a - Modelo Estocástico de Fila (Gabriel)
   
-  b - Parâmetros e números observados na literatura
+-  b - Parâmetros e números observados na literatura
