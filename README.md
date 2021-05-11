@@ -2,7 +2,8 @@
 Projeto de IoT
 
 # TODO
-IMPLEMENTAÇÃO - HARDWARE
+
+## IMPLEMENTAÇÃO - HARDWARE
 
 1 - Design Físico
 
@@ -16,7 +17,7 @@ IMPLEMENTAÇÃO - HARDWARE
   
 -  b - Justificativa
   
-IMPLEMENTAÇÃO - SOFTWARE
+## IMPLEMENTAÇÃO - SOFTWARE
 
 1 - Identificação 
 
@@ -36,7 +37,7 @@ IMPLEMENTAÇÃO - SOFTWARE
   
 -  b - Design
 
-PESQUISA
+## PESQUISA - FILA
 
 1 - Teste de Fila
 
@@ -49,3 +50,17 @@ PESQUISA
 -  a - Modelo Estocástico de Fila (Gabriel)
   
 -  b - Parâmetros e números observados na literatura
+
+## PESQUISA - ANÁLISE DE DADOS
+1 - Dados úteis
+- a - Originais
+- b - Derivados
+2 - Métodos e Algoritmos de Análise
+- a - O quê?
+- b - Para quê?
+- c - Como fazer?
+- d - Como apresentar?
+
+
+
+
