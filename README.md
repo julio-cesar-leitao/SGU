@@ -6,9 +6,9 @@ IMPLEMENTAÇÃO - HARDWARE
 
 1 - Design Físico
 
-  a - Posicionamento dos sensores
+-  a - Posicionamento dos sensores
   
-  b - Modo de Uso
+-  b - Modo de Uso
   
 2 - Componentes
 
