@@ -4,6 +4,16 @@ import RPi.GPIO as GPIO
 # References:   https://pypi.org/project/spidev/
 #               https://github.com/mxgxw/MFRC522-python
 #
+# Pinout Raspberry Pi with RFID-RC522 Shield (SPI comm)
+#
+#       Raspberry        Shield
+#     Pin 24 (GPIO8)     SDA
+#     Pin 23 (GPIO11)    SCK
+#     Pin 19 (GPIO10)    MOSI
+#     Pin 21 (GPIO9)     MISO
+#         -              IRQ
+#     Pin 22 (GPIO 25)   RST
+
 
 class RFID():
 
@@ -300,6 +310,48 @@ class RFID():
 
         # Return the status
         return status
+    
+    def CalculateCRC(self, pIndata):
+        self.ClearBitMask(self.DivIrqReg, 0x04)
+        self.SetBitMask(self.FIFOLevelReg, 0x80)
+        i = 0
+        while i<len(pIndata):
+            self.Write_MFRC522(self.FIFODataReg, pIndata[i])
+            i=i+1
+            
+        self.Write_MFRC522(self.CommandReg, self.PCD_CALCCRC)
+        i=0xFF
+        while True:
+            n=self.Read_MFRC522(self.DivIrqReg)
+            i=i-1
+            if not ((i!=0) and not (n&0x04)):
+                break
+            
+        pOutData=[]
+        pOutData.append(self.Read_MFRC522(self.CRCResultRegL))
+        pOutData.append(self.Read_MFRC522(self.CRCResultRegM))
+        return pOutData
+    
+    def MFRC522_SelectTag(self, serNum):
+        backData = []
+        buf = []
+        buf.append(self.PICC_SElECTTAG)
+        buf.append(0x70)
+        i=0
+        while i<5:
+            buf.append(serNum[i])
+            i=i+1
+            
+        pOut = self.CalculateCRC(buf)
+        buf.append(pOut[0])
+        buf.append(pOut[1])
+        (status, backData, backLen) = self.MFRC522_ToCard(self.PCD_TRANSCEIVE,buf)
+        
+        if (status == self.MI_OK) and (backLen == 0x18):
+            print ("Size: " + str(backData[0]))
+            return backData[0]
+        else:
+            return 0
 
     def MFRC522_Init(self):
         GPIO.output(self.RESET_PIN, 1)
@@ -322,7 +374,7 @@ if __name__ == "__main__":
         # scan for cards
         (status, TagType) = RFIDReader.MFRC522_Request(RFIDReader.PICC_REQIDL)
 
-        # If a carf is found
+        # If a card is found
         if status == RFIDReader.MI_OK:
             print ("card detected")
 
@@ -348,4 +400,4 @@ if __name__ == "__main__":
                 RFIDReader.MFRC522_Read(8)
                 RFIDReader.MFRC522_StopCrypto1()
             else:
-                print("Authentication erro")
+                print("Authentication error")
