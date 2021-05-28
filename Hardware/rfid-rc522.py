@@ -304,7 +304,7 @@ class RFID():
     def MFRC522_SelectTag(self, serNum):
         backData = []
         buf = []
-        buf.append(self.PICC_SelECTTAG)
+        buf.append(self.PICC_SElECTTAG)
         buf.append(0x70)
         i=0
         while i<5:
