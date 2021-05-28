@@ -300,6 +300,27 @@ class RFID():
 
         # Return the status
         return status
+    
+    def MFRC522_SelectTag(self, serNum):
+        backData = []
+        buf = []
+        buf.append(self.PICC_SelECTTAG)
+        buf.append(0x70)
+        i=0
+        while i<5:
+            buf.append(serNum[i])
+            i=i+1
+            
+        pOut = self.CalculateCRC(buf)
+        buf.append(pOut[0])
+        buf.append(pOut[1])
+        (status, backData, backLen) = self.MFRC522_ToCard(self.PCD_TRANSCEIVE,buf)
+        
+        if (status == self.MI_OK) and (backLen == 0x18):
+            print ("Size: " + str(backData[0]))
+            return backData[0]
+        else:
+            return 0
 
     def MFRC522_Init(self):
         GPIO.output(self.RESET_PIN, 1)
@@ -348,4 +369,4 @@ if __name__ == "__main__":
                 RFIDReader.MFRC522_Read(8)
                 RFIDReader.MFRC522_StopCrypto1()
             else:
-                print("Authentication erro")
+                print("Authentication error")
