@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+  <script>
+    $(function() {
+      var sguData = [];
+      var bigData = ""
+      $('#bigData').html(bigData)
+      $.getJSON('sguData.json', function(data) {
+        $.each(data.eventos, function(i, f) {
+          var tblRow = "<tr>" + "<td>" + f.id + "</td>" + "<td>" + f.time + "</td>" +
+            "<td>" + f.temp + "</td>" + "<td>" + f.mascara + "</td>" + "<td>"
+            + f.img + "</td>" + "</tr>"
+          $(tblRow).appendTo("#userdata tbody");
+          $('#tblRow').html(tblRow)
+          var img = "data:image/png;base64, " + f.img
+          $('#img').html(img)
+          sguData.push(f.img)
+          $('#sguData').html(sguData)
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <div class="profile">
+      <table id="userdata" border="2">
+        <thead>
+          <th>ID</th>
+          <th>Time</th>
+          <th>Temperature</th>
+          <th>Mask</th>
+          <th>Img</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
