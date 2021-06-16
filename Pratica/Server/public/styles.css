@@ -1,0 +1,67 @@
+.logo {
+  width: 30%;
+  margin: auto;
+  text-align: center;
+}
+
+.estacao {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  background-color: #33D7FF;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.catracas {
+  width: 9.5%;
+  text-align: center;
+  display: inline-block;
+  background-color: #8ecae6;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 10px;
+
+}
+
+.eventos {
+  text-align: center;
+  display: inline-block;
+  width: 400px;
+  background-color: #ffb703;
+}
+
+body {
+  background-color: #393E46;
+}
+
+h1 {
+  margin: 10px;
+
+
+  font-size: 4rem;
+  color: black;
+}
+
+p {
+  font-size: 2rem;
+  color: #023047;
+  margin: 0;
+  font-family: "cursive";
+}
+
+img {
+  width: 80%;
+}
+
+footer {
+  margin-top: 2%;
+  color: #EEEEEE;
+  text-align: center;
+  font-family: "cursive";
+
+}
