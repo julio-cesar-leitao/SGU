@@ -15,7 +15,7 @@ import smbus
 from time import sleep
 
 # Variables
-ServerURL = 'http://192.168.0.14:3000/eventos'
+ServerURL = 'http://127.0.0.1:5000/data_from_sgu'
 
 # Identification of this particular SGU
 SGUid = "001"
