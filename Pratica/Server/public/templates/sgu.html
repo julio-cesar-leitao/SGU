@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SGU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css')  }}">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+
+  </head>
+  <body>
+
+    <div class="logo">
+      <img src="https://www.metrocptm.com.br/wp-content/uploads/2021/01/metro-cptm-logo-2021.png" alt="Metrô CPTM">
+    </div>
+    <div class="estacao">
+      <h1>Estação Jabaquara - Linha 1 Azul</h1>
+    </div>
+
+
+    <div class="container">
+      <div id="evento" class="eventos">
+        <p>SGU ID# <span id="sgu_num"></span></p>
+        <img id="foto" class="img1" src="">
+	<p id="diagnostico">Máscara uso incorreto</p>
+	<div id="box_temp" class="box_temp">
+		<p>Temperatura aferida: <span id="temp"></span> °C</p>
+	</div>
+        <p id="timestamp"></p>
+      </div>
+    </div>
+
+    <footer>
+        www.sgu.com.br
+    </footer>
+
+    <script>
+	$(document).ready(function() {
+    		var socket = io();
+    		socket.on('sgu_data', function(data){
+        		//console.log(data);
+			let id_sgu = data["id"];
+			let timestamp = data["time"];
+			let temp = data["temp"];
+			let mask = data["mascara"];
+			let img = data["img"];
+			
+			document.getElementById("sgu_num").innerHTML = id_sgu;
+			document.getElementById("timestamp").innerHTML = timestamp;
+			if (mask == "nao") {
+				document.getElementById("diagnostico").innerHTML = "Uso incorreto da máscara!";
+			} else {
+				document.getElementById("diagnostico").innerHTML = "Uso correto da máscara!";
+			}
+			document.getElementById("temp").innerHTML = temp;
+    		});
+	});
+    </script>
+</html>

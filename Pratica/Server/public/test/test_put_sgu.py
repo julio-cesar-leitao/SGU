@@ -17,4 +17,4 @@ payload =          {
 
 
 
-r = requests.put('http://localhost:3000/eventos', json=payload)
+r = requests.put('http://localhost:3000/eventos/1', json=payload)
