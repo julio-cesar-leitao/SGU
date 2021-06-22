@@ -12,11 +12,12 @@
 $ python public/app.py
 ```
 
-This will make the http://localhost:5000 available with the following routes:
+This will make the http://IP:5000 available with the following routes:
 
 - / - Index page
 - /dashboard - Dashboard page
 - /data_from_sgu - Receive POST requests from SGU on JSON format
+- Obs.: IP is the ip of the computer runnign the flask server, so you can access this server using another network device on the same net.
 
 ## Testing with curl (without img) on bash $
 
