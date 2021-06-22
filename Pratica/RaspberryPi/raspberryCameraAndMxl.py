@@ -15,7 +15,7 @@ import smbus
 from time import sleep
 
 # Variables
-ServerURL = 'http://127.0.0.1:5000/data_from_sgu'
+ServerURL = 'http://0.0.0.0:5000/data_from_sgu'
 
 # Identification of this particular SGU
 SGUid = "001"
@@ -239,10 +239,11 @@ while True:
         label_mask = "Mask" if mask > withoutMask else "No Mask"
         
         # get the persons img
-        personsImg = "newImg"
+        #personsImg = "newImg"
         #import base64
-        #personsImg = base64.b64encode(frame).decode('utf-8')
-        
+        _, JPEG = cv2.imencode('.jpeg', frame)
+        personsImg = base64.b64encode(JPEG).decode('utf-8')
+                
         # Envia um json para um servidor
         payload = {
            "time": current_time,

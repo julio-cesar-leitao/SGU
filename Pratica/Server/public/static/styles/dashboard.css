@@ -31,7 +31,7 @@
 .eventos {
   text-align: center;
   display: inline-block;
-  width: 400px;
+  width: 60%;
   background-color: #ffb703;
 }
 
@@ -54,7 +54,7 @@ p {
 }
 
 img {
-  width: 80%;
+  width: 100%;
 }
 
 footer {
