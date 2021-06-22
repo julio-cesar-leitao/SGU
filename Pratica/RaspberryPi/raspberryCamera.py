@@ -11,54 +11,11 @@ import os
 from datetime import datetime
 import requests
 
-import smbus
-from time import sleep
 
-# Variables
-# replace here with your server ip
-ServerURL = 'http://192.168.0.14:5000/data_from_sgu'
-
+# Replace the IP 192.168.0.14 with your IP
+serverURL = 'http://192.168.0.14:5000/data_from_sgu'
 # Identification of this particular SGU
 SGUid = "001"
-
-class MXL90614():
-    # Based on the following source-code
-    # github.com/sightsdev/PyMLX90614/blob/master/mlx90614.py
-    #
-    # More details on MLX90614 datasheet on section 8.4 (SMBus)
-
-    BUS = 1         # /dev/i2c-1 is bus=1
-    ADDRESS = 0x5a    # MXL90614 slave address is 0x5a
-
-    ############# MLX90614 ADDRESS #################
-    Tamb = 0x06
-    Tobj1 = 0x07
-    Tobj2 = 0x08
-
-    comm_retries = 5
-    comm_sleep_amount = 0.1
-
-    def __init__(self):
-        self.bus = smbus.SMBus(self.BUS)
-        self.t_amb = 0
-        self.t_obj1 = 0
-        self.t_obj2 = 0
-
-    def read(self):
-        err = None
-        for i in range(self.comm_retries):
-            try:
-                self.t_amb = self.bus.read_word_data(self.ADDRESS, self.Tamb)
-                self.t_obj1 = self.bus.read_word_data(self.ADDRESS, self.Tobj1)
-                self.t_obj2 = self.bus.read_word_data(self.ADDRESS, self.Tobj2)
-            except IOError as e:
-                err = e
-                sleep(self.comm_sleep_amount)
-        #raise err
-
-    def celsius(self, data):
-        return (data * 0.02) - 273.15
-
 
 def detect_face(frame, faceNet):
     # grab the dimensions of the frame and then construct a blob
@@ -187,8 +144,7 @@ def get_max_face(locs):
 onBoxCounter = -1
 face_on_box = False
 preds = [[0, 1]]
-    
-sensor = MXL90614()
+
 
 import base64
 # loop over the frames from the video stream
@@ -229,10 +185,6 @@ while True:
         
         # Aferir temperatura
         # temp = getTemperature()
-        sensor.read()
-        temp = str(sensor.celsius(sensor.t_obj1))
-        temp = str(temp)[0:5]
-        print(temp)
         
         # get information about the mask
         preds = predict_mask(faces, maskNet)
@@ -246,16 +198,18 @@ while True:
         image_read = image.read()
         image_64_encode = str(base64.encodestring(image_read).decode('utf-8'))
         personsImg = image_64_encode
+        #import base64
+        #personsImg = base64.b64encode(frame).decode('utf-8')
         
         # Envia um json para um servidor
         payload = {
            "time": current_time,
-           "temp": temp,
+           "temp": "36",
            "mascara": label_mask,
            "img": personsImg,
            "SGUid": SGUid
         }
-        r = requests.post(ServerURL, json=payload)
+        r = requests.post(serverURL, json=payload)
         print(r)
     
     # loop over the detected face locations and their corresponding
@@ -292,3 +246,11 @@ while True:
 # do a bit of cleanup
 cv2.destroyAllWindows()
 vs.stop()
+
+
+
+
+
+
+
+
