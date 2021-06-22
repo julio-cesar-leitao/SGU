@@ -43,7 +43,7 @@
       var socket = io();
       socket.on('sgu_data', function(data) {
         //console.log(data);
-        let id_sgu = data["id"];
+        let id_sgu = data["SGUid"];
         let timestamp = data["time"];
         let temp = data["temp"];
         let mask = data["mascara"];
