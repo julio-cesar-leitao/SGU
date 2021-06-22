@@ -15,8 +15,12 @@ import smbus
 from time import sleep
 
 # Variables
+# <<<<<<< main
+# ServerURL = 'http://0.0.0.0:5000/data_from_sgu'
+=======
 # replace here with your server ip
 ServerURL = 'http://192.168.0.14:5000/data_from_sgu'
+# >>>>>>> main
 
 # Identification of this particular SGU
 SGUid = "001"
@@ -240,6 +244,13 @@ while True:
         label_mask = "sim" if mask > withoutMask else "nao"
         
         # get the persons img
+# <<<<<<< main
+#         #personsImg = "newImg"
+#         #import base64
+#         _, JPEG = cv2.imencode('.jpeg', frame)
+#         personsImg = base64.b64encode(JPEG).decode('utf-8')
+                
+# =======
         personsImg = "newImg"
         cv2.imwrite("lastImg.jpg", frame)
         image = open('lastImg.jpg', 'rb') #open binary file in read mode
@@ -247,6 +258,7 @@ while True:
         image_64_encode = str(base64.encodestring(image_read).decode('utf-8'))
         personsImg = image_64_encode
         
+# >>>>>>> main
         # Envia um json para um servidor
         payload = {
            "time": current_time,
