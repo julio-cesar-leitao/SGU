@@ -9,4 +9,4 @@ chmod +777 install.sh
 sh install.sh
 
 # Rode o código 
-python3 raspberryCameraAndMxl.py
+python3 raspberryCameraAndMlx.py
