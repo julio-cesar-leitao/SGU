@@ -17,7 +17,7 @@ from time import sleep
 # Variables
 # <<<<<<< main
 # ServerURL = 'http://0.0.0.0:5000/data_from_sgu'
-=======
+
 # replace here with your server ip
 ServerURL = 'http://192.168.0.14:5000/data_from_sgu'
 # >>>>>>> main
